@@ -27,6 +27,10 @@ The response of the request will look like this:
     
 I have created the two layer neural network for training the model. Two Linear layers, and one activation function used here us **ReLU**. As this problem is the multiclass classification problem, I've used **CrossEntropyLoss()** to find out the loss, then we don't need to add one more layer at the end i.e. Softmax Layer.
 
+The transformers used in this project are, **Grayscale(num_output_channels=1), Normalize((0.1307,), (0.3081,)), ToTensor(), Resize((28, 28))**.
+
+We first convert the request image into Image Bytes using BytesIO, then we pass the image_bytes to all the transformers mentioned above. Then we first resize the image_tensor to (-1, 28\*28), then pass the transformed Tensor to the pre-trained model, which will return the digit class, and the prediction in JSON format through the API response.
+
 Then for visualizing the data, I've used tensorboard to show the metrics, graphs, images etc.
 
 <img src="https://user-images.githubusercontent.com/52665879/177826662-0127d021-fcf9-4726-800a-8fc72f01e6cb.png" width="700px" height="300"/>
